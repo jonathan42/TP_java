@@ -1,5 +1,9 @@
 package Java10;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import Java10.Point;
 
 public class Rond extends Figure implements Surfacable{
@@ -41,8 +45,10 @@ public class Rond extends Figure implements Surfacable{
 		return this.centre;
 	}
 	@Override
-	public  Point[] getPoints(){
-		return new Point[] {getCentre()};
+	public  Collection<? extends Point> getPoints(){
+		 List<Point> lp =new ArrayList<Point>();
+		 lp.add(getCentre());
+		 return lp;
 		
 	}
 

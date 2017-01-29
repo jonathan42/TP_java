@@ -1,5 +1,8 @@
 package Java10;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 public class Segment extends Figure {
 
@@ -45,8 +48,11 @@ public class Segment extends Figure {
 	
 	
 	@Override
-	public  Point[] getPoints(){
-		return new Point[] {getDebut(),getFin()};
+	public  Collection<? extends Point> getPoints(){
+		List<Point> lp =new ArrayList<Point>();
+		 lp.add(getDebut());
+		 lp.add(getFin());
+		return lp;
 		
 	}
 

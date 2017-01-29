@@ -1,5 +1,9 @@
 package Java10;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 public class Rectangle extends Figure implements Surfacable {
 
 	private Point basG;
@@ -78,8 +82,13 @@ public class Rectangle extends Figure implements Surfacable {
 	}
 	
 	@Override
-	public  Point[] getPoints(){
-		return new Point[] {getBasD(),getBasG(),getHautD(),getHautG()};
+	public  Collection<? extends Point> getPoints(){
+		List<Point> lp = new ArrayList<Point>();
+				lp.add(getBasD());
+				lp.add(getBasG());
+				lp.add(getHautD());
+				lp.add(getHautG());
+				return lp;
 		
 	}
 }

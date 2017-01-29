@@ -1,5 +1,7 @@
 package Java10;
 
+import java.util.Collection;
+
 public abstract class Figure extends Object {
 
 	protected abstract String getType();
@@ -8,7 +10,7 @@ public abstract class Figure extends Object {
 	
 	public abstract void affiche();
 
-	public abstract Point[] getPoints();
+	public abstract Collection<? extends Point> getPoints();
 
 	
 }

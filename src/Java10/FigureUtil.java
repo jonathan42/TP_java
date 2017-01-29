@@ -1,11 +1,15 @@
 package Java10;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 public class FigureUtil {
 
-	private static final int x_max = 50;
+	private static final int x_max = 99;
 	private static final int x_min = 0;
 
-	private static final int y_max = 50;
+	private static final int y_max = 99;
 	private static final int y_min = 0;
 
 	private static final int size_max = 20;
@@ -79,6 +83,13 @@ public class FigureUtil {
 
 	}
 	
+	public static Collection<Figure> genere(int nb){
+		List<Figure> f = new ArrayList<Figure>();
+		for (int i=0;i<=nb;i++){
+			f.add(getRandomFigure());
+		}
+		return f;
+	}
 	
 	// fonction avec entre variable
 	public static int somme (int... valeurs){ //c'est une ellipse
@@ -90,26 +101,15 @@ public class FigureUtil {
 	}
 	
 	
-	public static Point[] getPoints(Figure... figures){
+	public static Collection<Point> getPoints(Figure... figures){
 		// Il peut y avoir des doublons
-		int nbPoint =0; 
+		
+		Collection<Point> points = new ArrayList<Point>();
+	
 		for(Figure f : figures){
-			nbPoint+=  f.getPoints().length;
+			points.addAll(f.getPoints());	
 		}
-		
-		Point points[] = new Point[nbPoint];
-		int i =0;
-		
-		
-		if (i !=0){
-		for(Figure f : figures){
-			for (Point p :f.getPoints()){
-				points[i] =  p;
-				i++;
-			}		
-		}
-		
-		}
+			
 		return points;
 }
 	
