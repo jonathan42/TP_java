@@ -1,5 +1,7 @@
 package Java10;
 
+import java.util.Collection;
+
 public class Test {
 
 	public static void main(String[] args) {
@@ -44,27 +46,44 @@ public class Test {
 
 		Figure f3 = FigureUtil.getRandomFigure();
 		f3.affiche();
-		
-		
+
 		// test exo de java 15
 
-		Segment s1 = new Segment( new Point(20, 20), 5 , true );
+		Segment s1 = new Segment(new Point(20, 20), 5, true);
 		s1.affiche();
-		Segment s2 = new Segment( new Point(20, 20), 5 , false );
+		Segment s2 = new Segment(new Point(20, 20), 5, false);
 		s2.affiche();
-		
+
 		System.out.println(rd1.surface());
 		System.out.println(rt1.surface());
-		
-		
+
 		Surfacable sr1 = FigureUtil.getRandomSurfacable();
 		System.out.println(sr1 + " -> " + sr1.surface());
-		
+
 		Surfacable sr2 = FigureUtil.getRandomSurfacable();
 		System.out.println(sr2 + " -> " + sr2.surface());
-		
+
 		Surfacable sr3 = FigureUtil.getRandomSurfacable();
 		System.out.println(sr3 + " -> " + sr3.surface());
+
+		/// exo 22
+
+		Collection<Figure> figures = FigureUtil.genere(50);
+
+		System.out.println(figures);
+
+		Dessin dessin = new Dessin();
+		for (Figure f : figures) {
+			dessin.add(f);
+		}
+
+		Figure couverte = FigureUtil.getFigureEn(new Point(), dessin);
+		if (couverte == null) {
+			System.out.println("Rien");
+		} else {
+			couverte.affiche();
+		}
+
 	}
 
 }

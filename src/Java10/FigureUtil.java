@@ -2,6 +2,7 @@ package Java10;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 public class FigureUtil {
@@ -126,5 +127,16 @@ public class FigureUtil {
 		}
 		
 }
+
+	public static Figure getFigureEn(Point p, Dessin d) {
+		Iterator<Figure> iterator = d.getFigures().iterator();
+		 		while(iterator.hasNext()){
+		 			Figure f = iterator.next();
+					if(f.couvre(p)){
+		 				return f;
+		 			}
+		 		}
+		 		return null;
+	}
 
 }

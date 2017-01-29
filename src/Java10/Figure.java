@@ -12,5 +12,5 @@ public abstract class Figure extends Object {
 
 	public abstract Collection<? extends Point> getPoints();
 
-	
+	public abstract boolean couvre(Point p);
 }

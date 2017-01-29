@@ -56,6 +56,22 @@ public class Segment extends Figure {
 		
 	}
 
+	@Override
+	 	public boolean couvre(Point p) {
+	 		if(p.getX() < getDebut().getX()){
+	 			return false;
+	 		}
+	 		if(p.getX() > getFin().getX()){
+	 			return false;
+	 		}
+	 		if(p.getY() < getDebut().getY()){
+	 			return false;
+	 		}
+	 		if(p.getY() > getFin().getY()){
+	 			return false;
+	 		}
+	 		return true;
+	 	}
 
 	@Override
 	public  String toString(){

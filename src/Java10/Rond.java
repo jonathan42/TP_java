@@ -51,7 +51,13 @@ public class Rond extends Figure implements Surfacable{
 		 return lp;
 		
 	}
-
+	@Override
+	 	public boolean couvre(Point p) {
+	 		int x2 = (p.getX() - centre.getX()) * (p.getX() - centre.getX());
+	 		int y2 = (p.getY() - centre.getY()) * (p.getY() - centre.getY());
+	 		int d = (int) Math.round(Math.sqrt( x2 + y2 ));
+	 		return d <= rayon;
+	 	}
 
 	// **************** Interface ******************** //
 
