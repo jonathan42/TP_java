@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 public class FigureUtil {
 
@@ -128,15 +129,17 @@ public class FigureUtil {
 		
 }
 
-	public static Figure getFigureEn(Point p, Dessin d) {
+	// il faut mieux utilise un Optional pour les retour null
+	public static Optional<Figure> getFigureEn(Point p, Dessin d) {
+		// iterator car on modifi pas la collection
 		Iterator<Figure> iterator = d.getFigures().iterator();
 		 		while(iterator.hasNext()){
 		 			Figure f = iterator.next();
 					if(f.couvre(p)){
-		 				return f;
+		 				return Optional.of(f);
 		 			}
 		 		}
-		 		return null;
+		 		return Optional.empty();
 	}
 
 }

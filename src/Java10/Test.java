@@ -1,6 +1,7 @@
 package Java10;
 
 import java.util.Collection;
+import java.util.Optional;
 
 public class Test {
 
@@ -77,11 +78,11 @@ public class Test {
 			dessin.add(f);
 		}
 
-		Figure couverte = FigureUtil.getFigureEn(new Point(), dessin);
-		if (couverte == null) {
+		Optional<Figure> couverte = FigureUtil.getFigureEn(new Point(), dessin);
+		if (!couverte.isPresent()) { // pour le test de Optional
 			System.out.println("Rien");
 		} else {
-			couverte.affiche();
+			couverte.get().affiche();
 		}
 
 	}
