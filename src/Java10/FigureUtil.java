@@ -56,15 +56,16 @@ public class FigureUtil {
 		int L = getRandomInteger(size_min, size_max);
 		int H = getRandomInteger(size_min, size_max);
 		Point p = getRandomPoint(x_min, x_max, y_min, y_max);
-		return new Rectangle(p, L, H);
+		Couleur c = getRandomCouleur();
+		return new Rectangle(c,p, L, H);
 
 	}
 
 	public static Carre getRandomCarre() {
 		int cote = getRandomInteger(size_min, size_max);
 		Point basGauche = getRandomPoint(x_min, x_max, y_min, y_max);
-		// Couleur couleur = getRandomCouleur();
-		Carre carre = new Carre(basGauche, cote);
+		 Couleur couleur = getRandomCouleur();
+		Carre carre = new Carre(couleur,basGauche, cote);
 		// ids.put(carre.getId(), carre);
 		return carre;
 	}
