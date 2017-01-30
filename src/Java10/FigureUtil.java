@@ -112,6 +112,8 @@ public class FigureUtil {
 		}
 
 		return points;
+		
+	
 	}
 
 	public static Surfacable getRandomSurfacable() {
@@ -130,14 +132,19 @@ public class FigureUtil {
 	// il faut mieux utilise un Optional pour les retour null
 	public static Optional<Figure> getFigureEn(Point p, Dessin d) {
 		// iterator car on modifi pas la collection
-		Iterator<Figure> iterator = d.getFigures().iterator();
+		/*Iterator<Figure> iterator = d.getFigures().iterator();
 		while (iterator.hasNext()) {
 			Figure f = iterator.next();
 			if (f.couvre(p)) {
 				return Optional.of(f);
 			}
 		}
-		return Optional.empty();
+		return Optional.empty();*/
+		
+		return d.getFigures().stream()
+				//.parallel()
+				.filter(f -> f.couvre(p))
+				.findAny();
 	}
 
 	//
@@ -149,9 +156,16 @@ public class FigureUtil {
 
 	public static List<Surfacable> trieDominant(Dessin dessin) {
 		return dessin.getFigures().stream()
-				.filter(f -> f instanceof Surfacable).map(x -> (Surfacable) x)
-				.sorted((f1, f2) -> f1.surface() > f2.surface() ? -1 : 1)
+				.filter(f -> f instanceof Surfacable)
+				.map(x ->(Surfacable) x)
+				.sorted( (f1,f2) -> f1.surface() > f2.surface() ? -1 :1)
 				.collect(Collectors.toList());
+						
+		// return dessin.getFigures().stream()
+		//		.filter(f -> f instanceof Surfacable)
+		//		.map(x -> (Surfacable) x)
+		//		.sorted((f1, f2) -> f1.surface() > f2.surface() ? -1 : 1)
+		//		.collect(Collectors.toList());
 	}
 
 }
