@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class FigureUtil {
 
@@ -59,17 +60,16 @@ public class FigureUtil {
 		// ids.put(carre.getId(), carre);
 		return carre;
 	}
-	
-	public static Segment getRandomSegment(){
+
+	public static Segment getRandomSegment() {
 		Point debut = getRandomPoint(x_min, x_max, y_min, y_max);
 		int longueur = getRandomInteger(size_min, size_max);
-		boolean horizontal = getRandomInteger(0, 1) > 0.5; //pour le test
-		
+		boolean horizontal = getRandomInteger(0, 1) > 0.5; // pour le test
+
 		Segment seg = new Segment(debut, longueur, horizontal);
 		return seg;
 	}
 
-	
 	public static Figure getRandomFigure() {
 		int choix = getRandomInteger(0, 3);
 		switch (choix) {
@@ -84,62 +84,74 @@ public class FigureUtil {
 		}
 
 	}
-	
-	public static Collection<Figure> genere(int nb){
+
+	public static Collection<Figure> genere(int nb) {
 		Collection<Figure> f = new ArrayList<Figure>();
-		for (int i=0;i<=nb;i++){
+		for (int i = 0; i <= nb; i++) {
 			f.add(getRandomFigure());
 		}
 		return f;
 	}
-	
+
 	// fonction avec entre variable
-	public static int somme (int... valeurs){ //c'est une ellipse
-		int s=0;
-		for(int v:valeurs){
-			s+=v;
+	public static int somme(int... valeurs) { // c'est une ellipse
+		int s = 0;
+		for (int v : valeurs) {
+			s += v;
 		}
 		return s;
 	}
-	
-	
-	public static Collection<Point> getPoints(Figure... figures){
+
+	public static Collection<Point> getPoints(Figure... figures) {
 		// Il peut y avoir des doublons
-		
+
 		Collection<Point> points = new ArrayList<Point>();
-	
-		for(Figure f : figures){
-			points.addAll(f.getPoints());	
+
+		for (Figure f : figures) {
+			points.addAll(f.getPoints());
 		}
-			
+
 		return points;
-}
-	
-	
-	public static Surfacable getRandomSurfacable(){
+	}
+
+	public static Surfacable getRandomSurfacable() {
 		int choix = getRandomInteger(0, 2);
-		switch(choix){
-		case 0 : 
+		switch (choix) {
+		case 0:
 			return getRandomRond();
-		case 1 : 
+		case 1:
 			return getRandomCarre();
-		default : 
+		default:
 			return getRandomRectangle();
 		}
-		
-}
+
+	}
 
 	// il faut mieux utilise un Optional pour les retour null
 	public static Optional<Figure> getFigureEn(Point p, Dessin d) {
 		// iterator car on modifi pas la collection
 		Iterator<Figure> iterator = d.getFigures().iterator();
-		 		while(iterator.hasNext()){
-		 			Figure f = iterator.next();
-					if(f.couvre(p)){
-		 				return Optional.of(f);
-		 			}
-		 		}
-		 		return Optional.empty();
+		while (iterator.hasNext()) {
+			Figure f = iterator.next();
+			if (f.couvre(p)) {
+				return Optional.of(f);
+			}
+		}
+		return Optional.empty();
+	}
+
+	//
+	public static List<Object> trieProcheOrigine(Dessin dessin) {
+		return dessin.getFigures().stream()
+				.sorted()
+				.collect(Collectors.toList());
+	}
+
+	public static List<Surfacable> trieDominant(Dessin dessin) {
+		return dessin.getFigures().stream()
+				.filter(f -> f instanceof Surfacable).map(x -> (Surfacable) x)
+				.sorted((f1, f2) -> f1.surface() > f2.surface() ? -1 : 1)
+				.collect(Collectors.toList());
 	}
 
 }

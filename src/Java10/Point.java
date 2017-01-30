@@ -8,6 +8,8 @@ public class Point extends Object{
 	private int x;
 	private int y;
 	
+	private static final Point ORIGINE = new Point();
+	
 	public Point() {
 		this(INIT_X, INIT_Y);
 	}
@@ -54,6 +56,19 @@ public class Point extends Object{
 			return false;
 		return true; // true sinon
 	}
+	
+	public double distance(Point p){
+		
+		return Math.sqrt( Math.exp(this.getX()-p.getX()) + Math.exp(this.getY()-p.getY()) ); 
+	}
+	
+	public double distanceOrigine(){
+		return distance(ORIGINE);
+	}
+	
+	
+	
+	
 	
 	
 }
