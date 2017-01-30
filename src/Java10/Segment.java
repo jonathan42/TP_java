@@ -2,6 +2,7 @@ package Java10;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 
 public class Segment extends Figure {
@@ -49,7 +50,7 @@ public class Segment extends Figure {
 	
 	@Override
 	public  Collection<? extends Point> getPoints(){
-		List<Point> lp =new ArrayList<Point>();
+		Collection<Point> lp =new HashSet<Point>();
 		 lp.add(getDebut());
 		 lp.add(getFin());
 		return lp;

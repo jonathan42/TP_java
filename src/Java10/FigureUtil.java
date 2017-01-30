@@ -85,7 +85,7 @@ public class FigureUtil {
 	}
 	
 	public static Collection<Figure> genere(int nb){
-		List<Figure> f = new ArrayList<Figure>();
+		Collection<Figure> f = new ArrayList<Figure>();
 		for (int i=0;i<=nb;i++){
 			f.add(getRandomFigure());
 		}

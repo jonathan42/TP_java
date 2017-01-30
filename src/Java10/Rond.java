@@ -2,6 +2,7 @@ package Java10;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 
 import Java10.Point;
@@ -46,7 +47,7 @@ public class Rond extends Figure implements Surfacable{
 	}
 	@Override
 	public  Collection<? extends Point> getPoints(){
-		 List<Point> lp =new ArrayList<Point>();
+		 Collection<Point> lp =new HashSet<Point>();
 		 lp.add(getCentre());
 		 return lp;
 		
