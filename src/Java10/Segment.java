@@ -58,6 +58,15 @@ public class Segment extends Figure {
 	}
 
 	@Override
+	public boolean equals(Object o){
+		
+		if (o instanceof Segment){
+			return ((Segment) o).getDebut().equals(getDebut()) && ((Segment) o).getFin().equals(getFin());
+		}
+		return false;
+	}
+	
+	@Override
 	 	public boolean couvre(Point p) {
 	 		if(p.getX() < getDebut().getX()){
 	 			return false;

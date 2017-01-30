@@ -92,6 +92,23 @@ public class Rectangle extends Figure implements Surfacable {
 				return lp;
 		
 	}
+	
+	
+	
+	@Override
+	public boolean equals(Object o){
+		
+		if (o instanceof Rectangle){
+			
+			return ( ((Rectangle) o).getBasD().equals(getBasD())
+					&& ((Rectangle) o).getBasG().equals(getBasG())
+					&& ((Rectangle) o).getHautD().equals(getHautD())
+					&& ((Rectangle) o).getHautG().equals(getHautG())
+					);
+		}
+		return false;
+	}
+	
 	@Override
 	 	public boolean couvre(Point p) {
 	 		if(p.getX() < getBasG().getX()){

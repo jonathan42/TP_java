@@ -60,6 +60,16 @@ public class Rond extends Figure implements Surfacable{
 	 		return d <= rayon;
 	 	}
 
+	
+	@Override
+	public boolean equals(Object o){
+		
+		if (o instanceof Rond){
+			return ((Rond) o).getCentre().equals(this.getCentre()) && ((Rond) o).getRayon() ==this.getRayon();
+		}
+		return false;
+		
+	}
 	// **************** Interface ******************** //
 
 	@Override
