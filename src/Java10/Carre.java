@@ -6,6 +6,10 @@ public class Carre extends Rectangle{
 		super(centre,cote,cote);		
 	}
 	
+	public Carre(Couleur couleur, Point centre, int cote){
+		super(couleur,centre,cote,cote);		
+	}
+	
 	@Override
 	protected String getType(){
 		return "CARRE ";

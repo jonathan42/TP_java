@@ -18,6 +18,16 @@ public class Segment extends Figure {
 			this.fin = new Point(debut.getX() + longueur, debut.getY());
 		}
 	}
+	
+	public Segment(Couleur c,Point debut, int longueur, boolean horizontal) {
+		super(c);
+		this.debut = debut;
+		if (!horizontal) {
+			this.fin = new Point(debut.getX(), debut.getY() + longueur);
+		} else {
+			this.fin = new Point(debut.getX() + longueur, debut.getY());
+		}
+	}
 
 	
 	
@@ -85,7 +95,7 @@ public class Segment extends Figure {
 
 	@Override
 	public  String toString(){
-		return "[ "+ getType() + getDebut() + " à " + getFin() + "]";
+		return "[ "+ getType() + getCouleur() + ":"+ getDebut() + " à " + getFin() + "]";
 	}
 	@Override
 	public void affiche() {

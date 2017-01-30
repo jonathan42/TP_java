@@ -17,6 +17,12 @@ public class Rond extends Figure implements Surfacable{
 		this.rayon = rayon;
 	}
 
+	public Rond(Couleur couleur,Point centre, int rayon) {
+		super(couleur);
+		this.centre = centre;
+		this.rayon = rayon;
+	}
+
 	
 	public int getRayon() {
 		return rayon;
@@ -27,7 +33,7 @@ public class Rond extends Figure implements Surfacable{
 
 	@Override
 	public String toString() {
-		return "["+getType() + getCentre() + ";" + getRayon() + "]";
+		return "["+getType() + getCouleur() + " : "+ getCentre() + ";" + getRayon() + "]";
 	}
 
 	@Override

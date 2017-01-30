@@ -6,6 +6,19 @@ import java.util.Collections;
 
 public abstract class Figure extends Object {
 
+	private Couleur couleur;
+	public Couleur getCouleur(){
+		return couleur;
+	}
+	
+	public Figure(){
+		couleur =Couleur.getCouleurDefaut();
+	}
+	public Figure(Couleur c){
+		couleur = c;
+	}
+	
+	
 	protected abstract String getType();
 
 	public abstract Point getCentre();

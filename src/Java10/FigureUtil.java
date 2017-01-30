@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 public class FigureUtil {
@@ -34,12 +35,19 @@ public class FigureUtil {
 		int y = getRandomInteger(y_min, y_max);
 		return new Point(x, y);
 	}
+	
+	private static Couleur getRandomCouleur() {
+		int max = Couleur.values().length;
+		int i = getRandomInteger(0, max-1);
+		return Couleur.values()[i];
+	}
 
 	public static Rond getRandomRond() {
 
 		int rayon = getRandomInteger(size_min / 2, size_max / 2);
 		Point p = getRandomPoint(x_min, x_max, y_min, y_max);
-		return new Rond(p, rayon);
+		Couleur c = getRandomCouleur();
+		return new Rond(c, p, rayon);
 
 	}
 

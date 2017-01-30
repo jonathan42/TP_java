@@ -24,12 +24,15 @@ public class Rectangle extends Figure implements Surfacable {
 	 */
 	public Rectangle(Point centre, int L, int H) {
 
-		/*
-		 * this.basG = new Point(centre.getX()-(L/2),centre.getY()-(H/2));
-		 * this.basD = new Point(centre.getX()-(L/2),centre.getY()+(H/2));
-		 * this.hautG = new Point(centre.getX()+(L/2),centre.getY()-(H/2));
-		 * this.hautD = new Point(centre.getX()+(L/2),centre.getY()+(H/2));
-		 */
+		this.basG = new Point(centre.getX(), centre.getY()); // évite la copie
+		this.basD = new Point(centre.getX() + L, centre.getY());
+		this.hautG = new Point(centre.getX(), centre.getY() + H);
+		this.hautD = new Point(centre.getX() + L, centre.getY() + H);
+
+	}
+	
+	public Rectangle(Couleur c,Point centre, int L, int H) {
+		super(c);
 		this.basG = new Point(centre.getX(), centre.getY()); // évite la copie
 		this.basD = new Point(centre.getX() + L, centre.getY());
 		this.hautG = new Point(centre.getX(), centre.getY() + H);
@@ -60,7 +63,7 @@ public class Rectangle extends Figure implements Surfacable {
 
 	@Override
 	public String toString() {
-		return "[ " + getType() + getBasG() + ";" + getBasD() + ";" + getHautG() + ";" + getHautD() + "]";
+		return "[ " + getType() + getCouleur()+" :" + getBasG() + ";" + getBasD() + ";" + getHautG() + ";" + getHautD() + "]";
 	}
 
 	@Override
