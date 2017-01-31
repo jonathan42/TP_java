@@ -1,6 +1,8 @@
 package Java10;
 
-public enum Couleur {
+import java.io.Serializable;
+
+public enum Couleur implements Serializable {
 
 	Rouge('R'),Vert('V'),Bleu('B'),Jaune('J'),Noir('N');
 	

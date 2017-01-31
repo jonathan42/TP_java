@@ -1,12 +1,16 @@
 package Java10;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 
-public class Rectangle extends Figure implements Surfacable {
 
+public class Rectangle extends Figure implements Surfacable, Serializable  {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4419365950081494868L;
 	private Point basG;
 	private Point basD;
 	private Point hautG;

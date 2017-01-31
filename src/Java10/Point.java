@@ -1,7 +1,13 @@
 package Java10;
 
-public class Point extends Object{
+import java.io.Serializable;
 
+public class Point extends Object implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8344629131535707425L;
 	public static final int INIT_X =25;
 	public static final int INIT_Y =25;
 	

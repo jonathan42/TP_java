@@ -1,14 +1,16 @@
 package Java10;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 
-import Java10.Point;
 
-public class Rond extends Figure implements Surfacable{
+public class Rond extends Figure implements Surfacable,  Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2253226645114023647L;
 	private Point centre;
 	private int rayon;
 

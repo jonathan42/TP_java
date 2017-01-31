@@ -1,11 +1,17 @@
 package Java10;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 public class FigureUtil {
@@ -176,5 +182,74 @@ public class FigureUtil {
 		//		.sorted((f1, f2) -> f1.surface() > f2.surface() ? -1 : 1)
 		//		.collect(Collectors.toList());
 	}
+	
+		public static void imprime(Dessin d) throws IOException {
+			
+			    // on crée un fichier temp
+				File file = File.createTempFile("monDessin", ".dessin");
+				
+				PrintWriter sortie = new PrintWriter(new FileOutputStream(file));
+				
+				// pour le dession on ouvre un stream et ont parcours les figures 
+				// qu'on imprime dasn la sorti
+				d.getFigures().stream().forEach(f -> sortie.println(f));	
+				
+				// on genere un séparateur 
+				
+				for(int x=x_min;x<x_max;x++){
+					sortie.print("=");
+					//System.out.print("=");
+				}
+				sortie.println();
+				//System.out.println();
+				
+				// on parcour les points Y et X 
+				for(int y=y_min;y<y_max;y++){
+					for(int x=x_min;x<x_max;x++){
+						Optional<Figure> figure = getFigureEn(new Point(x,y),d);
+						// si present on  imprime le code couleur
+						if(figure.isPresent()){
+							sortie.println(figure.get().getCouleur().getCode());
+							//System.out.print(figure.get().getCouleur().getCode());
+						} else {
+							// sinon on mais un espace
+							sortie.println(" ");
+							//System.out.print(" ");
+						}
+					}
+					sortie.println();
+					//System.out.println();
+				}
+				System.out.println("Impression sous " + file.getAbsolutePath());
+				sortie.close();
+			}
+		
+			
+			public static void sauvegarde(Dessin d) throws IOException {
+				// creation d'un fichier .save
+				File file = File.createTempFile("monDessin", ".save");
+				// ouverture du flux 
+				ObjectOutputStream sortie = new ObjectOutputStream(new FileOutputStream(file));
+				sortie.writeObject(d); // ecrrit dans le flux le dessin
+				System.out.println("Sauvegarde sous " + file.getAbsolutePath()); // imprime systeme
+				sortie.close(); // ferme le flux
+			}
+			
+			public static Dessin charge(String filename) throws IOException, ClassNotFoundException {
+				Dessin dessin;
+				
+				try {
+					// ouvre le flux du fichier 
+					ObjectInputStream enter = new ObjectInputStream(new FileInputStream(filename));
+					//met dans dessin l'objet casté en dessin lu
+					dessin = (Dessin) enter.readObject();
+					enter.close();
+				} catch (FileNotFoundException e) {
+					System.out.println("Fichier non trouvé : " + e.getMessage());
+					// si fichier non trouvé  il crée un dessin defaut
+					dessin = new Dessin();
+				}
+				return dessin; // return dessin
+			}
 
 }

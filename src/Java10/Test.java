@@ -1,5 +1,6 @@
 package Java10;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.Optional;
 
@@ -86,7 +87,19 @@ public class Test {
 		}
 
 		
-		
+		Dessin d2 = new Dessin();
+		FigureUtil.genere(15).stream().forEach(fff -> d2.add(fff));
+				try {
+					FigureUtil.imprime(d2);
+					FigureUtil.sauvegarde(d2);
+					//System.out.println();
+					System.out.println(FigureUtil.charge("C:\\Users\\FORMAT~1\\AppData\\Local\\Temp\\monDessin8987604709889003256.save").getFigures());
+				} catch(IOException e){
+					System.out.println("Erreur (IOException) durant le traitement : "+e.getMessage());
+				} catch(ClassNotFoundException e){
+					System.out.println("Erreur (ClassNotFoundException) durant le traitement : "+e.getMessage());
+				}
+				
 	}
 	
 

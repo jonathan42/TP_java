@@ -1,11 +1,16 @@
 package Java10;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
-public abstract class Figure extends Object {
+public abstract class Figure extends Object implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1702696662531336857L;
 	private Couleur couleur;
 	public Couleur getCouleur(){
 		return couleur;
